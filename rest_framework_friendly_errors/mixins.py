@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.conf import settings as dj_settings
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils import timezone
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from rest_framework.exceptions import ErrorDetail
 from rest_framework.exceptions import ValidationError as RestValidationError
 from rest_framework.settings import api_settings
@@ -178,9 +178,15 @@ class FriendlyErrorMessagesMixin(FieldMap):
             if parent:
                 initial_data = self.initial_data[parent.field_name]
                 for data in initial_data:
-                    validator(data[field.field_name])
+                    if getattr(validator, 'requires_context', False):
+                        validator(data[field.field_name], field)
+                    else:
+                        validator(data[field.field_name])
             else:
-                validator(self.initial_data[field.field_name])
+                if getattr(validator, 'requires_context', False):
+                    validator(self.initial_data[field.field_name], field)
+                else:
+                    validator(self.initial_data[field.field_name])
         except (DjangoValidationError, RestValidationError) as err:
             err_message = err.detail[0] \
                 if hasattr(err, 'detail') else err.message

@@ -7,7 +7,8 @@ DRF Friendly Errors (New Version: Django & DRF)
     :target: https://travis-ci.org/frankyjquintero/drf-friendly-errors
 
 
-* Fork From: https://github.com/FutureMind/drf-friendly-errors
+* Fork From: https://github.com/FutureMind/drf-friendly-errors 
+        and https://github.com/citixensas/drf-friendly-errors
 
 Overview
 --------
@@ -78,7 +79,7 @@ Or using pip (pendent register xD)
 
 .. code:: bash
 
-    $ pip install drf-friendly-errors
+    $ pip install drf-friendly-errors-2
 
 Usage
 -----

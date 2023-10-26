@@ -2,10 +2,10 @@
 wheel==0.33.6
 
 # Twine for secured PyPI uploads.
-twine==1.13.0
+twine==4.0.2
 
 # Transifex client for managing translation resources.
-transifex-client==0.13.6
+transifex-client==0.14.4
 
 # Pandoc to have a nice pypi page
 pypandoc
